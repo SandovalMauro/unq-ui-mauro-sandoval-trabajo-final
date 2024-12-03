@@ -1,5 +1,5 @@
 import images from '../../assets/images.js';
-import dorso from '../../assets/dorso.png';
+import dorso from '../../assets/dorso.jpg';
 import './Tablero.css';
 import {useEffect, useState} from "react";
 
