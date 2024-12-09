@@ -47,6 +47,29 @@
     background-color: #90ee90;
 }
 
+.player-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.player{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.player-turn{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #45f345;
+    box-shadow: 6px 6px 20px green;
+}
+
 @media (min-width: 1200px) {
     .tablero-container {
         max-width: 700px;

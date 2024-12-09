@@ -6,6 +6,8 @@ import {useEffect, useState} from "react";
 const Tablero = () =>{
     const [pairImages, setPairImages] = useState([]);
     const [flipped, setFlipped] = useState([]);
+    const [playerTurn, setPlayerTurn] = useState(1);
+    const [score, setScore] = useState({ player1: 0, player2: 0 });
 
     useEffect( () => {
         setPairImages([...images, ...images]
@@ -32,6 +34,12 @@ const Tablero = () =>{
                 updatePairImages[firstFlipped].matched = true;
                 updatePairImages[secondFlipped].matched = true;
                 setPairImages(updatePairImages);
+
+                if (playerTurn === 1) {
+                    setScore(prevScore => ({ ...prevScore, player1: prevScore.player1 + 1 }));
+                } else {
+                    setScore(prevScore => ({ ...prevScore, player2: prevScore.player2 + 1 }));
+                }
             }
 
             setTimeout(() => {
@@ -40,6 +48,7 @@ const Tablero = () =>{
                 resetTablero[secondFlipped].flipped = false;
                 setPairImages(resetTablero);
                 setFlipped([]);
+                setPlayerTurn(playerTurn === 1 ? 2 : 1);
             }, 1000);
         }
     }
@@ -48,6 +57,10 @@ const Tablero = () =>{
     return(
         <div className="container">
             <h1>Memotest</h1>
+            <div className="player-container">
+                <div className={`player ${playerTurn === 1 ? 'player-turn' : ''}`}> Jugador 1: {score.player1} pts</div>
+                <div className={`player ${playerTurn === 2 ? 'player-turn' : ''}`}> Jugador 2: {score.player2} pts</div>
+            </div>
             <div className="tablero-container">
                 {pairImages.map((image, index) => (
                     <div
