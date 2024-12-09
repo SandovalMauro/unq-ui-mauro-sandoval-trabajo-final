@@ -5,17 +5,43 @@ import {useEffect, useState} from "react";
 
 const Tablero = () =>{
     const [pairImages, setPairImages] = useState([]);
+    const [flipped, setFlipped] = useState([]);
 
     useEffect( () => {
         setPairImages([...images, ...images]
             .sort(() => Math.random() - 0.5)
-            .map((image, index) => ({...image, id: index, flipped: false})))
+            .map((image, index) => ({...image, id: index, flipped: false, matched: false})))
     }, [])
 
     const handlerCard = (index) => {
+        if (flipped.length === 2 || pairImages[index].flipped) return;
+
         const newPairImages = [...pairImages];
-        newPairImages[index].flipped = !newPairImages[index].flipped;
+        newPairImages[index].flipped = true;
         setPairImages(newPairImages);
+
+
+        const newFlipped = [...flipped, index];
+        setFlipped(newFlipped);
+
+        if(newFlipped.length === 2){
+            const [firstFlipped, secondFlipped] = newFlipped;
+
+            if(pairImages[firstFlipped].src === pairImages[secondFlipped].src){
+                const updatePairImages = [...pairImages];
+                updatePairImages[firstFlipped].matched = true;
+                updatePairImages[secondFlipped].matched = true;
+                setPairImages(updatePairImages);
+            }
+
+            setTimeout(() => {
+                const resetTablero = [...pairImages];
+                resetTablero[firstFlipped].flipped = false;
+                resetTablero[secondFlipped].flipped = false;
+                setPairImages(resetTablero);
+                setFlipped([]);
+            }, 1000);
+        }
     }
 
 
@@ -24,10 +50,15 @@ const Tablero = () =>{
             <h1>Memotest</h1>
             <div className="tablero-container">
                 {pairImages.map((image, index) => (
-                    <div className="card-container">
-                        {image.flipped ? <img className="card-image" src={image.src} alt="imagen" key={image.id}/>
-                            :
-                            <img className="card-image" src={dorso} alt="imagen" key={image.id} onClick={() => handlerCard(index)}/>}
+                    <div
+                        key ={image.id}
+                        className={`card ${image.flipped ? 'flipped' : ''} ${image.matched ? 'matched' : ''}`}
+                        onClick={() => handlerCard(index)}>
+                        {image.flipped || image.matched ? (
+                            <img className="card-image" src={image.src} alt="imagen" />
+                        ) : (
+                            <img className="card-image" src={dorso} alt="dorso" />
+                        )}
                     </div>
                 ))}
             </div>
