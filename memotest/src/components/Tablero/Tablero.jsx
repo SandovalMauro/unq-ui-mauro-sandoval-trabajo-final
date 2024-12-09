@@ -55,9 +55,9 @@ const Tablero = () =>{
                         className={`card ${image.flipped ? 'flipped' : ''} ${image.matched ? 'matched' : ''}`}
                         onClick={() => handlerCard(index)}>
                         {image.flipped || image.matched ? (
-                            <img className="card-image" src={image.src} alt="imagen" />
+                            <img className="image" src={image.src} alt="imagen" />
                         ) : (
-                            <img className="card-image" src={dorso} alt="dorso" />
+                            <img className="image" src={dorso} alt="dorso" />
                         )}
                     </div>
                 ))}
