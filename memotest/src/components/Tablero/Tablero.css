@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
 }
 
 .tablero-container {
@@ -46,14 +47,8 @@
     background-color: #90ee90;
 }
 
-@media (max-width: 600px) {
-    .tablero-container {
-        gap: 5px;
-    }
-}
-
 @media (min-width: 1200px) {
     .tablero-container {
-        max-width: 600px;
+        max-width: 700px;
     }
 }
