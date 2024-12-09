@@ -3,6 +3,7 @@ import beaver from './beaver.png';
 import bee from './bee.png';
 import boar from './boar.png';
 import butterfly from './butterfly.png';
+import capricorn from './capricorn.png';
 import cat from './cat.png';
 import chicken from './chicken.png';
 import cow from './cow.png';
@@ -36,6 +37,7 @@ const images = [
     { src: bee },
     { src: boar },
     { src: butterfly },
+    { src: capricorn },
     { src: cat },
     { src: chicken },
     { src: cow },
