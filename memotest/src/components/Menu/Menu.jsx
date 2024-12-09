@@ -1,4 +1,5 @@
 import {useNavigate} from "react-router-dom";
+import './Menu.css';
 
 
 const Menu = () =>{
@@ -10,11 +11,14 @@ const Menu = () =>{
         navigate("/Tablero");
     }
     return(
-        <>
-            Menu
+        <div className="container">
+            <p>Menu</p>
+
             <p onClick={handlerRutaJ}>jugadores</p>
             <p onClick={handlerRutaT}>tablero</p>
-        </>
+
+            <button onClick={handlerRutaT}>Jugar</button>
+        </div>
     )
 }
 

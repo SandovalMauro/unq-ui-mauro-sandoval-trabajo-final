@@ -4,13 +4,15 @@ import './Tablero.css';
 import {useEffect, useState} from "react";
 
 const Tablero = () =>{
+    const cantidadImagenes = 10;
     const [pairImages, setPairImages] = useState([]);
     const [flipped, setFlipped] = useState([]);
     const [playerTurn, setPlayerTurn] = useState(1);
     const [score, setScore] = useState({ player1: 0, player2: 0 });
 
     useEffect( () => {
-        setPairImages([...images, ...images]
+        const shuffledImages = images.sort(() => Math.random() - 0.5).slice(0, cantidadImagenes);
+        setPairImages([...shuffledImages, ...shuffledImages]
             .sort(() => Math.random() - 0.5)
             .map((image, index) => ({...image, id: index, flipped: false, matched: false})))
     }, [])

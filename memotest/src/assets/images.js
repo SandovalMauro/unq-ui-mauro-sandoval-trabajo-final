@@ -44,7 +44,7 @@ const images = [
     { src: elephant },
     { src: fox },
     { src: frog },
-    /*{ src: giraffe },
+    { src: giraffe },
     { src: hippopotamus },
     { src: koala },
     { src: lion },
@@ -61,7 +61,7 @@ const images = [
     { src: sheep },
     { src: squirrel },
     { src: tiger },
-    { src: turtles }*/
+    { src: turtles }
 ]
 
 export default images;
