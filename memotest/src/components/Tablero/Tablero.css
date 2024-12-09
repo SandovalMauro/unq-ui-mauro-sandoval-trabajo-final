@@ -16,12 +16,21 @@
 
 .image {
     width: 95%;
-    height: 95%;
+    height: 90%;
+}
+
+.dorso {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
 }
 
 .card{
     width: 100%;
-    position: relative;
+    aspect-ratio: 1 / 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     justify-items: center;
     border-radius: 8px;
     cursor: pointer;

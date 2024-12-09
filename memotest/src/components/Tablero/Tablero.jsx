@@ -57,7 +57,7 @@ const Tablero = () =>{
                         {image.flipped || image.matched ? (
                             <img className="image" src={image.src} alt="imagen" />
                         ) : (
-                            <img className="image" src={dorso} alt="dorso" />
+                            <img className="dorso" src={dorso} alt="dorso" />
                         )}
                     </div>
                 ))}
