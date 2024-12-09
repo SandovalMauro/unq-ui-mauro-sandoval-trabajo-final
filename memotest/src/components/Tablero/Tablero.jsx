@@ -12,8 +12,10 @@ const Tablero = () =>{
             .map((image, index) => ({...image, id: index, flipped: false})))
     }, [])
 
-    const handlerCard = (e) => {
-
+    const handlerCard = (index) => {
+        const newPairImages = [...pairImages];
+        newPairImages[index].flipped = !newPairImages[index].flipped;
+        setPairImages(newPairImages);
     }
 
 
@@ -21,13 +23,11 @@ const Tablero = () =>{
         <div className="container">
             <h1>Memotest</h1>
             <div className="tablero-container">
-                {pairImages.map((image) => (
+                {pairImages.map((image, index) => (
                     <div className="card-container">
-                        {image.flipped ? <img className="card-image" src={image.src} alt="imagen" key={image.id} onClick={handlerCard}/>
+                        {image.flipped ? <img className="card-image" src={image.src} alt="imagen" key={image.id}/>
                             :
-                            <img className="card-image" src={dorso} alt="imagen" key={image.id} onClick={handlerCard}/>}
-                        {/*<img className="card-image" src={image.src} alt="imagen" key={image.id}
-                              onClick={handlerCard}/>*/}
+                            <img className="card-image" src={dorso} alt="imagen" key={image.id} onClick={() => handlerCard(index)}/>}
                     </div>
                 ))}
             </div>
