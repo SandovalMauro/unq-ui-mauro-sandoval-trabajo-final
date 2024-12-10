@@ -14,7 +14,7 @@ const Menu = () =>{
     }
 
     const handlerJugar = () => {
-        navigate("/Tablero", {state : {tableroSize:tableroSize, jugadores:numberPlayers}});
+        navigate("/tablero", {state : {tableroSize:tableroSize, jugadores:numberPlayers}});
     }
     return(
         <div className="container-menu">

@@ -2,12 +2,14 @@ import images from '../../assets/images.js';
 import dorso from '../../assets/dorso.jpg';
 import './Tablero.css';
 import {useEffect, useState} from "react";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import pares from '../../helper/pares.js';
 
 const Tablero = () =>{
+    const navigate = useNavigate();
     const location = useLocation();
     const {tableroSize, jugadores } = location.state || {};
+    const [pairsFound, setPairsFound] = useState(0);
     const [pairImages, setPairImages] = useState([]);
     const [flipped, setFlipped] = useState([]);
     const [playerTurn, setPlayerTurn] = useState(1);
@@ -18,7 +20,18 @@ const Tablero = () =>{
         setPairImages([...shuffledImages, ...shuffledImages]
             .sort(() => Math.random() - 0.5)
             .map((image, index) => ({...image, id: index, flipped: false, matched: false})))
-    }, [])
+        setPairsFound(0);
+        setFlipped([]);
+        setPlayerTurn(1);
+        setScore({ player1: 0, player2: 0 });
+    }, [tableroSize, jugadores])
+
+
+    useEffect(() => {
+        if (pairsFound > 0 && pairsFound === pairImages.length / 2) {
+            navigate("/gameOver", {state: {score: score}});
+        }
+    }, [pairsFound]);
 
     const handlerCard = (index) => {
         if (flipped.length === 2 || pairImages[index].flipped) return;
@@ -39,6 +52,7 @@ const Tablero = () =>{
                 updatePairImages[firstFlipped].matched = true;
                 updatePairImages[secondFlipped].matched = true;
                 setPairImages(updatePairImages);
+                setPairsFound(pairsFound + 1);
 
                 if (playerTurn === 1) {
                     setScore(prevScore => ({ ...prevScore, player1: prevScore.player1 + 1 }));
