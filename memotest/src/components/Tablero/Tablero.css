@@ -2,6 +2,9 @@
     max-width: 500px;
     max-height: 100%;
     margin: 20px auto;
+    border: solid 2px #4e4444;
+    border-radius: 8px;
+    padding: 20px;
 }
 
 .tablero-container-column-4,
@@ -68,25 +71,34 @@
 
 .player-container{
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
+    border: solid 2px #4e4444;
+    border-radius: 8px;
+    padding: 20px;
+
 }
 
 .player{
     font-size: 24px;
     font-weight: bold;
     text-align: center;
+    flex-grow: 1;
+    border-radius: 8px;
 }
 
 .player-turn{
     font-size: 24px;
     font-weight: bold;
     text-align: center;
-    background-color: #45f345;
-    box-shadow: 6px 6px 20px green;
+    background-color: rgba(69, 243, 118, 0.78);
+    box-shadow: 6px 6px 20px green,
+                6px 6px 20px green,
+                6px 6px 20px #d4ec38;
 }
 
 @media (min-width: 700px) {
