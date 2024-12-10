@@ -1,4 +1,5 @@
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";4
+import './GameOver.css';
 
 
 const GameOver = () =>{
@@ -11,8 +12,8 @@ const GameOver = () =>{
     }
 
     return (
-        <div>
-            <div>
+        <div className="container-game-over">
+            <div className="message-player">
                 {jugadores === 1 ?
                     <p>Felicidades terminaste el juego con {score.player1} puntos!!</p>
                     :
@@ -26,6 +27,7 @@ const GameOver = () =>{
                         )}
                     </>
                 }
+                <p>¡¡Gracias por jugar!!</p>
             </div>
             <button onClick={handlerMenu}>Volver a jugar</button>
 

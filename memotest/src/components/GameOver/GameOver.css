@@ -1,0 +1,19 @@
+.container-game-over {
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #9696a8;
+    padding: 20px;
+    border: solid 1px #1a1a1a;
+    border-radius: 8px;
+}
+
+.message-player > p {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
