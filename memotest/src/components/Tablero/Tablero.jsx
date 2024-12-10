@@ -3,17 +3,18 @@ import dorso from '../../assets/dorso.jpg';
 import './Tablero.css';
 import {useEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
+import pares from '../../helper/pares.js';
 
 const Tablero = () =>{
     const location = useLocation();
-    const {pares, jugadores } = location.state || {};
+    const {tableroSize, jugadores } = location.state || {};
     const [pairImages, setPairImages] = useState([]);
     const [flipped, setFlipped] = useState([]);
     const [playerTurn, setPlayerTurn] = useState(1);
     const [score, setScore] = useState({ player1: 0, player2: 0 });
 
     useEffect( () => {
-        const shuffledImages = images.sort(() => Math.random() - 0.5).slice(0, pares);
+        const shuffledImages = images.sort(() => Math.random() - 0.5).slice(0, pares[tableroSize]);
         setPairImages([...shuffledImages, ...shuffledImages]
             .sort(() => Math.random() - 0.5)
             .map((image, index) => ({...image, id: index, flipped: false, matched: false})))
@@ -57,6 +58,11 @@ const Tablero = () =>{
         }
     }
 
+    const getColumns = () => {
+        return parseInt(tableroSize.charAt(0));
+    };
+
+    const columns = getColumns();
 
     return(
         <div className="container">
@@ -65,7 +71,7 @@ const Tablero = () =>{
                 <div className={`player ${playerTurn === 1 ? 'player-turn' : ''}`}> Jugador 1: {score.player1} pts</div>
                 <div className={`player ${playerTurn === 2 ? 'player-turn' : ''}`}> Jugador 2: {score.player2} pts</div>
             </div>
-            <div className="tablero-container">
+            <div className="tablero-container" style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
                 {pairImages.map((image, index) => (
                     <div
                         key ={image.id}

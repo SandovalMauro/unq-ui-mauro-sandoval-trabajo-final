@@ -4,15 +4,17 @@ import {useState} from "react";
 
 
 const Menu = () =>{
-    const [numberCards, setNumberCards] = useState(1);
+    const tableros = ['4x4', '4x5', '4x6', '4x7', '5x6', '6x6', '6x7', '6x8', '8x7', '8x8'];
+    const [tableroSize, setTableroSize] = useState("4x4");
     const [numberPlayers, setNumberPlayers] = useState(1);
     const navigate = useNavigate();
 
-    const handlerRutaJ = () => {
-        navigate("/jugadores");
+    const handleSelectTablero = (tablero) => {
+        setTableroSize(tablero);
     }
-    const handlerRutaT = () => {
-        navigate("/Tablero", {state : {pares:numberCards, jugadores:numberPlayers}});
+
+    const handlerJugar = () => {
+        navigate("/Tablero", {state : {tableroSize:tableroSize, jugadores:numberPlayers}});
     }
     return(
         <div className="container">
@@ -25,21 +27,23 @@ const Menu = () =>{
                 </div>
 
             </div>
-            <div className="selection-cards-container">
-                <p>Seleccione la cantidad de pares</p>
-                <div>
-                    <select className="select-cant" value={numberCards}
-                            onChange={(e) => setNumberCards(Number(e.target.value))}>
-                        {[...Array(32).keys()].map(i => (
-                            <option key={i + 1}
-                                    value={i + 1}> {i + 1} {i + 1 > 1 ? " pares" : " par"}</option>
-                        ))}
-                    </select>
+            <div className="selection-tablero-container">
+                <p>Selecciona el tamaño del tablero</p>
+                <div className="tablero-options">
+                    {tableros.map((tablero, index) => (
+                        <button
+                            key={index}
+                            className={`size-button ${tableroSize === tablero ? 'selected' : ''}`}
+                            onClick={() => handleSelectTablero(tablero)}
+                        >
+                            {tablero}
+                        </button>
+                    ))}
 
                 </div>
             </div>
 
-            <button onClick={handlerRutaT}>Jugar</button>
+            <button onClick={handlerJugar}>Jugar</button>
         </div>
     )
 }
