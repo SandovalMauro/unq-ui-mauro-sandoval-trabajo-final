@@ -4,7 +4,7 @@ import {useState} from "react";
 
 
 const Menu = () =>{
-    const tableros = ['4x4', '4x5', '4x6', '4x7', '5x6', '6x6', '6x7', '6x8', '8x7', '8x8'];
+    const tableros = ['4x4', '5x4', '6x5', '6x6', '7x6', '8x6', '8x7', '8x8'];
     const [tableroSize, setTableroSize] = useState("4x4");
     const [numberPlayers, setNumberPlayers] = useState(1);
     const navigate = useNavigate();
@@ -17,13 +17,13 @@ const Menu = () =>{
         navigate("/Tablero", {state : {tableroSize:tableroSize, jugadores:numberPlayers}});
     }
     return(
-        <div className="container">
+        <div className="container-menu">
             <p>Menu</p>
             <div className="selection-player-container">
                 <p>Seleccione cantidad de jugadores</p>
                 <div className="buttons-player-container">
-                    <button className="button-player">1</button>
-                    <button className="button-player">2</button>
+                    <button className={`button-player ${numberPlayers === 1 ? 'selected' : ''}`} onClick={() => setNumberPlayers(1)}>1</button>
+                    <button className={`button-player ${numberPlayers === 2 ? 'selected' : ''}`} onClick={() => setNumberPlayers(2)}>2</button>
                 </div>
 
             </div>

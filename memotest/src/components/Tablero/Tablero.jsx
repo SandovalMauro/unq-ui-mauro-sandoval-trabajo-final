@@ -66,12 +66,11 @@ const Tablero = () =>{
 
     return(
         <div className="container">
-            <h1>Memotest</h1>
             <div className="player-container">
                 <div className={`player ${playerTurn === 1 ? 'player-turn' : ''}`}> Jugador 1: {score.player1} pts</div>
                 <div className={`player ${playerTurn === 2 ? 'player-turn' : ''}`}> Jugador 2: {score.player2} pts</div>
             </div>
-            <div className="tablero-container" style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
+            <div className={`tablero-container-column-${columns}`}>
                 {pairImages.map((image, index) => (
                     <div
                         key ={image.id}

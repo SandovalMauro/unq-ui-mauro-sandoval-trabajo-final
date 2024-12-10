@@ -1,25 +1,43 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    /*background-color: #1a1a1a;*/
-    background-color: #545465;
-    padding-bottom: 20px;
+    max-width: 500px;
+    max-height: 100%;
+    margin: 20px auto;
 }
 
-.tablero-container {
+.tablero-container-column-4,
+.tablero-container-column-5,
+.tablero-container-column-6,
+.tablero-container-column-7,
+.tablero-container-column-8{
     display: grid;
-    /*grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));*/
-    gap: 10px;
     justify-content: center;
-    max-width: 90vw;
-    margin: 0 auto;
+    align-items: center;
+    gap: 10px;
+}
+
+.tablero-container-column-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.tablero-container-column-5 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.tablero-container-column-6 {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.tablero-container-column-7 {
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.tablero-container-column-8 {
+    grid-template-columns: repeat(8, 1fr);
 }
 
 .image {
-    width: 95%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
 }
 
 .dorso {
@@ -29,8 +47,7 @@
 }
 
 .card{
-    width: 100%;
-    aspect-ratio: 1 / 1.5;
+    aspect-ratio: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,7 +89,7 @@
     box-shadow: 6px 6px 20px green;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 700px) {
     .tablero-container {
         max-width: 700px;
     }

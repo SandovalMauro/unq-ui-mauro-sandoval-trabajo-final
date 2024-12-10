@@ -6,7 +6,7 @@ import RouterApp from "./Router.jsx";
 function App() {
 
     return (
-        <div className="App">
+        <div>
             <Router>
                 <RouterApp/>
             </Router>
