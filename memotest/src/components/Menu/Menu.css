@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #545465;
+    background-color: #9696a8;
     padding: 20px;
     border: solid 1px #1a1a1a;
 }
@@ -95,4 +95,20 @@
     background-color: #4caf50;
     color: white;
     border-color: #4caf50;
+}
+
+.button-play{
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.button-play:hover {
+    background-color: #f4f4f4;
+    border-color: #bbb;
 }

@@ -43,7 +43,7 @@ const Menu = () =>{
                 </div>
             </div>
 
-            <button onClick={handlerJugar}>Jugar</button>
+            <button className="button-play" onClick={handlerJugar}>Jugar</button>
         </div>
     )
 }
