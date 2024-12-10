@@ -1,82 +1,8 @@
-import images from '../../assets/images.js';
-import dorso from '../../assets/dorso.jpg';
+import dorso from "../../assets/dorso.jpg";
 import './Tablero.css';
-import {useEffect, useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
-import pares from '../../helper/pares.js';
-import Player from "../Player/Player.jsx";
 
-const Tablero = () =>{
-    const navigate = useNavigate();
-    const location = useLocation();
-    const {tableroSize, jugadores } = location.state || {};
-    const [pairsFound, setPairsFound] = useState(0);
-    const [pairImages, setPairImages] = useState([]);
-    const [flipped, setFlipped] = useState([]);
-    const [playerTurn, setPlayerTurn] = useState(1);
-    const [score, setScore] = useState({ player1: 0, player2: 0 });
+const Tablero = ({pairImages, handlerCard, tableroSize}) => {
 
-    useEffect( () => {
-        const shuffledImages = images.sort(() => Math.random() - 0.5).slice(0, pares[tableroSize]);
-        setPairImages([...shuffledImages, ...shuffledImages]
-            .sort(() => Math.random() - 0.5)
-            .map((image, index) => ({...image, id: index, flipped: false, matched: false})))
-        setPairsFound(0);
-        setFlipped([]);
-        setPlayerTurn(1);
-        setScore({ player1: 0, player2: 0 });
-    }, [tableroSize, jugadores])
-
-
-    useEffect(() => {
-        if (pairsFound > 0 && pairsFound === pairImages.length / 2) {
-            navigate("/gameOver", {state: {score: score, jugadores : jugadores}});
-        }
-    }, [pairsFound]);
-
-    const handlerCard = (index) => {
-        if (flipped.length === 2 || pairImages[index].flipped) return;
-
-        const newPairImages = [...pairImages];
-        newPairImages[index].flipped = true;
-        setPairImages(newPairImages);
-
-
-        const newFlipped = [...flipped, index];
-        setFlipped(newFlipped);
-
-        if(newFlipped.length === 2){
-            const [firstFlipped, secondFlipped] = newFlipped;
-
-            if(pairImages[firstFlipped].src === pairImages[secondFlipped].src){
-                const updatePairImages = [...pairImages];
-                updatePairImages[firstFlipped].matched = true;
-                updatePairImages[secondFlipped].matched = true;
-                setPairImages(updatePairImages);
-                setPairsFound(pairsFound + 1);
-
-                if (playerTurn === 1) {
-                    setScore(prevScore => ({ ...prevScore, player1: prevScore.player1 + 1 }));
-                } else {
-                    setScore(prevScore => ({ ...prevScore, player2: prevScore.player2 + 1 }));
-                }
-            }
-
-            setTimeout(() => {
-                const resetTablero = [...pairImages];
-                resetTablero[firstFlipped].flipped = false;
-                resetTablero[secondFlipped].flipped = false;
-                setPairImages(resetTablero);
-                setFlipped([]);
-                handlerTurn();
-            }, 1000);
-        }
-    }
-
-    const handlerTurn = () => {
-        if(jugadores === 1) return;
-        setPlayerTurn(playerTurn === 1 ? 2 : 1);
-    }
 
     const getColumns = () => {
         return parseInt(tableroSize.charAt(0));
@@ -84,25 +10,23 @@ const Tablero = () =>{
 
     const columns = getColumns();
 
-    return(
-        <div className="container">
-            <Player jugadores={jugadores} playerTurn={playerTurn} score={score}/>
-            <div className={`tablero-container-column-${columns}`}>
-                {pairImages.map((image, index) => (
-                    <div
-                        key ={image.id}
-                        className={`card ${image.flipped ? 'flipped' : ''} ${image.matched ? 'matched' : ''}`}
-                        onClick={() => handlerCard(index)}>
-                        {image.flipped || image.matched ? (
-                            <img className="image" src={image.src} alt="imagen" />
-                        ) : (
-                            <img className="dorso" src={dorso} alt="dorso" />
-                        )}
-                    </div>
-                ))}
-            </div>
+    return (
+        <div className={`tablero-container-column-${columns}`}>
+            {pairImages.map((image, index) => (
+                <div
+                    key={image.id}
+                    className={`card ${image.flipped ? 'flipped' : ''} ${image.matched ? 'matched' : ''}`}
+                    onClick={() => handlerCard(index)}>
+                    {image.flipped || image.matched ? (
+                        <img className="image" src={image.src} alt="imagen"/>
+                    ) : (
+                        <img className="dorso" src={dorso} alt="dorso"/>
+                    )}
+                </div>
+            ))}
         </div>
-    )
+    );
+
 }
 
 export default Tablero;
