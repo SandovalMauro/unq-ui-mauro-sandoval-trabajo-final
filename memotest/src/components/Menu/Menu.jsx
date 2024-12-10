@@ -4,13 +4,15 @@ import {useState} from "react";
 
 
 const Menu = () =>{
-    const [quantity, setQuantity] = useState(1);
+    const [numberCards, setNumberCards] = useState(1);
+    const [numberPlayers, setNumberPlayers] = useState(1);
     const navigate = useNavigate();
+
     const handlerRutaJ = () => {
         navigate("/jugadores");
     }
     const handlerRutaT = () => {
-        navigate("/Tablero");
+        navigate("/Tablero", {state : {pares:numberCards, jugadores:numberPlayers}});
     }
     return(
         <div className="container">
@@ -26,11 +28,11 @@ const Menu = () =>{
             <div className="selection-cards-container">
                 <p>Seleccione la cantidad de pares</p>
                 <div>
-                    <select className="select-cant" value={quantity}
-                            onChange={(e) => setQuantity(Number(e.target.value))}>
+                    <select className="select-cant" value={numberCards}
+                            onChange={(e) => setNumberCards(Number(e.target.value))}>
                         {[...Array(32).keys()].map(i => (
                             <option key={i + 1}
-                                    value={i + 1}> {i + 1} {i + 1 > 1 ? " unidades" : " unidad"}</option>
+                                    value={i + 1}> {i + 1} {i + 1 > 1 ? " pares" : " par"}</option>
                         ))}
                     </select>
 

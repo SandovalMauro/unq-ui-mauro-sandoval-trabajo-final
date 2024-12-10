@@ -2,16 +2,18 @@ import images from '../../assets/images.js';
 import dorso from '../../assets/dorso.jpg';
 import './Tablero.css';
 import {useEffect, useState} from "react";
+import {useLocation} from "react-router-dom";
 
 const Tablero = () =>{
-    const cantidadImagenes = 64;
+    const location = useLocation();
+    const {pares, jugadores } = location.state || {};
     const [pairImages, setPairImages] = useState([]);
     const [flipped, setFlipped] = useState([]);
     const [playerTurn, setPlayerTurn] = useState(1);
     const [score, setScore] = useState({ player1: 0, player2: 0 });
 
     useEffect( () => {
-        const shuffledImages = images.sort(() => Math.random() - 0.5).slice(0, cantidadImagenes);
+        const shuffledImages = images.sort(() => Math.random() - 0.5).slice(0, pares);
         setPairImages([...shuffledImages, ...shuffledImages]
             .sort(() => Math.random() - 0.5)
             .map((image, index) => ({...image, id: index, flipped: false, matched: false})))
