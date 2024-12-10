@@ -35,7 +35,7 @@ const Game = () =>{
     }, [pairsFound]);
 
     const handlerCard = (index) => {
-        if (flipped.length === 2 || pairImages[index].flipped) return;
+        if (flipped.length === 2 || pairImages[index].flipped || pairImages[index].matched) return;
 
         const newPairImages = [...pairImages];
         newPairImages[index].flipped = true;

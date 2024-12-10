@@ -51,6 +51,7 @@
     background-color: #4caf50;
     color: white;
     border-color: #4caf50;
+    outline: 4px auto -webkit-focus-ring-color;
 }
 
 .selection-tablero-container{
@@ -95,6 +96,7 @@
     background-color: #4caf50;
     color: white;
     border-color: #4caf50;
+    outline: 4px auto -webkit-focus-ring-color;
 }
 
 .button-play{
