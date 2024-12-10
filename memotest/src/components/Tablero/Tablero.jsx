@@ -4,6 +4,7 @@ import './Tablero.css';
 import {useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import pares from '../../helper/pares.js';
+import Player from "../Player/Player.jsx";
 
 const Tablero = () =>{
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Tablero = () =>{
 
     useEffect(() => {
         if (pairsFound > 0 && pairsFound === pairImages.length / 2) {
-            navigate("/gameOver", {state: {score: score}});
+            navigate("/gameOver", {state: {score: score, jugadores : jugadores}});
         }
     }, [pairsFound]);
 
@@ -67,9 +68,14 @@ const Tablero = () =>{
                 resetTablero[secondFlipped].flipped = false;
                 setPairImages(resetTablero);
                 setFlipped([]);
-                setPlayerTurn(playerTurn === 1 ? 2 : 1);
+                handlerTurn();
             }, 1000);
         }
+    }
+
+    const handlerTurn = () => {
+        if(jugadores === 1) return;
+        setPlayerTurn(playerTurn === 1 ? 2 : 1);
     }
 
     const getColumns = () => {
@@ -80,10 +86,7 @@ const Tablero = () =>{
 
     return(
         <div className="container">
-            <div className="player-container">
-                <div className={`player ${playerTurn === 1 ? 'player-turn' : ''}`}> Jugador 1: {score.player1} pts</div>
-                <div className={`player ${playerTurn === 2 ? 'player-turn' : ''}`}> Jugador 2: {score.player2} pts</div>
-            </div>
+            <Player jugadores={jugadores} playerTurn={playerTurn} score={score}/>
             <div className={`tablero-container-column-${columns}`}>
                 {pairImages.map((image, index) => (
                     <div
