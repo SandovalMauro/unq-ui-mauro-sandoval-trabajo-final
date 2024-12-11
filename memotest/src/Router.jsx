@@ -9,6 +9,7 @@ const RouterApp = () => {
             <Route path="/" element={<Menu/>}></Route>
             <Route path="/gameOver" element={<GameOver/>}></Route>
             <Route path="/game" element={<Game/>}></Route>
+            <Route path="*" element={<Menu/>}/>
         </Routes>
     );
 }
