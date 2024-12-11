@@ -1,4 +1,4 @@
-# Memotest
+# Memotest - Mauro Sandoval TFI
 
 Pasos para poder jugar:  
 cd memotest  
