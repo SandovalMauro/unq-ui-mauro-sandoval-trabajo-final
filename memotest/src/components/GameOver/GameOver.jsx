@@ -1,7 +1,6 @@
 import {useLocation, useNavigate} from "react-router-dom";4
 import './GameOver.css';
 import confetti from 'canvas-confetti';
-import {useEffect} from "react";
 
 
 const GameOver = () =>{
@@ -14,15 +13,11 @@ const GameOver = () =>{
     }
 
     const ConfettiEffect = () => {
-        useEffect(() => {
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 },
-            });
-        }, []);
-
-        return null; // No renderiza nada, solo ejecuta el efecto
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+        });
     };
 
     return (
