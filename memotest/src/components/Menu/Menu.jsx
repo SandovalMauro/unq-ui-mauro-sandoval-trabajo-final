@@ -18,9 +18,10 @@ const Menu = () =>{
     }
     return(
         <div className="container-menu">
-            <p>Menu</p>
+            <h1 className="title">Memotest</h1>
+            <p className="text">Menu</p>
             <div className="selection-player-container">
-                <p>Seleccione cantidad de jugadores</p>
+                <p className="text">Seleccione cantidad de jugadores</p>
                 <div className="buttons-player-container">
                     <button className={`button-player ${numberPlayers === 1 ? 'selected' : ''}`} onClick={() => setNumberPlayers(1)}>1</button>
                     <button className={`button-player ${numberPlayers === 2 ? 'selected' : ''}`} onClick={() => setNumberPlayers(2)}>2</button>
@@ -28,7 +29,7 @@ const Menu = () =>{
 
             </div>
             <div className="selection-tablero-container">
-                <p>Selecciona el tamaño del tablero</p>
+                <p className="text">Selecciona el tamaño del tablero</p>
                 <div className="tablero-options">
                     {tableros.map((tablero, index) => (
                         <button

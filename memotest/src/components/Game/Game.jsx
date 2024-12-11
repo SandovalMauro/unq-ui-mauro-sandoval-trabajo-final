@@ -52,6 +52,8 @@ const Game = () =>{
                 const updatePairImages = [...pairImages];
                 updatePairImages[firstFlipped].matched = true;
                 updatePairImages[secondFlipped].matched = true;
+                updatePairImages[firstFlipped].flipped = false;
+                updatePairImages[secondFlipped].flipped = false;
                 setPairImages(updatePairImages);
                 setPairsFound(pairsFound + 1);
 

@@ -60,4 +60,5 @@
 .card.matched {
     background-color: #90ee90;
     transform: none;
+    pointer-events: none;
 }

@@ -1,5 +1,7 @@
 import {useLocation, useNavigate} from "react-router-dom";4
 import './GameOver.css';
+import confetti from 'canvas-confetti';
+import {useEffect} from "react";
 
 
 const GameOver = () =>{
@@ -10,6 +12,18 @@ const GameOver = () =>{
     const handlerMenu = () => {
         navigate("/");
     }
+
+    const ConfettiEffect = () => {
+        useEffect(() => {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+            });
+        }, []);
+
+        return null; // No renderiza nada, solo ejecuta el efecto
+    };
 
     return (
         <div className="container-game-over">
@@ -29,8 +43,8 @@ const GameOver = () =>{
                 }
                 <p>¡¡Gracias por jugar!!</p>
             </div>
-            <button onClick={handlerMenu}>Volver a jugar</button>
-
+            <button className="button-play-again" onClick={handlerMenu}>Volver a jugar</button>
+            <ConfettiEffect />
         </div>
     );
 }

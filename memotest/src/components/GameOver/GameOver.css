@@ -17,3 +17,19 @@
     color: #1a1a1a;
     margin-bottom: 20px;
 }
+
+.button-play-again{
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.button-play-again:hover {
+    background-color: #f4f4f4;
+    border-color: #bbb;
+}
